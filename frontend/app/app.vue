@@ -3,7 +3,7 @@ const { error, pending, running, runError, runNow, noDigestYet, isEmpty, bySourc
 </script>
 
 <template>
-  <main class="p-4 md:max-w-3xl md:mx-auto md:p-8">
+  <main class="mx-auto max-w-[760px] px-4 py-ds-8 md:px-ds-6">
     <DigestHeader
       :formatted-date="formattedDate"
       :running="running"
@@ -18,6 +18,8 @@ const { error, pending, running, runError, runNow, noDigestYet, isEmpty, bySourc
       :is-empty="isEmpty"
     />
 
-    <DigestSource v-for="(picks, source) in bySource" :key="source" :source="source" :picks="picks" />
+    <div class="flex flex-col gap-ds-4">
+      <DigestSource v-for="(picks, source) in bySource" :key="source" :source="source" :picks="picks" />
+    </div>
   </main>
 </template>
