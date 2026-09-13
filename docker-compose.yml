@@ -31,7 +31,7 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "${BACKEND_PORT}:8080"
+      - "${BACKEND_PORT}:8090"
     depends_on:
       db:
         condition: service_healthy
@@ -47,7 +47,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     ports:
-      - "${FRONTEND_PORT}:3000"
+      - "${FRONTEND_PORT}:3001"
     depends_on:
       - backend
 

@@ -64,7 +64,7 @@ func main() {
 	})
 	digest.RegisterRoutes(app, pipeline, store)
 
-	addr := ":8080"
+	addr := ":8090"
 	log.Printf("backend listening on %s", addr)
 	log.Fatal(app.Listen(addr))
 }
