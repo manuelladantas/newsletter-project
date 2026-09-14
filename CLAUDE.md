@@ -13,6 +13,12 @@ Primary dev workflow (starts db + backend + frontend + adminer together):
 docker compose up --build
 ```
 - Backend hot-reloads via `air` on `.go` file changes; frontend runs `nuxt dev`.
+
+Frontend in production mode (built Nuxt app served by Nitro, no hot reload; backend still uses `air`):
+```
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build
+```
+- Uses `frontend/Dockerfile` (multi-stage `nuxt build`) via the `docker-compose.prod.yml` override, which also drops the source bind-mount.
 - Requires a `.env` file (see `.env.example` for required keys: `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`, `POSTGRES_PORT`, `BACKEND_PORT`, `FRONTEND_PORT`, `ADMINER_PORT`).
 
 Backend standalone (from `backend/`):

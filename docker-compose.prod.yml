@@ -1,0 +1,8 @@
+# Production override: serves the built Nuxt app instead of `nuxt dev`.
+# Usage: docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes: !override []
