@@ -14,6 +14,7 @@ import (
 	_ "github.com/lib/pq"
 
 	"newsletter-backend/digest"
+	"newsletter-backend/favorites"
 )
 
 func main() {
@@ -43,6 +44,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	favStore, err := favorites.NewPostgresStore(ctx, db)
+	if err != nil {
+		log.Fatal(err)
+	}
 	pipeline := &digest.Pipeline{
 		Sources:         digest.DefaultSources(),
 		OllamaURL:       cfg.OllamaURL,
@@ -63,6 +68,7 @@ func main() {
 		return c.SendString("ok")
 	})
 	digest.RegisterRoutes(app, pipeline, store)
+	favorites.RegisterRoutes(app, favStore)
 
 	addr := ":8090"
 	log.Printf("backend listening on %s", addr)
